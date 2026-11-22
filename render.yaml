@@ -1,0 +1,11 @@
+# API no Render. O front (docs/) vai no GitHub Pages.
+services:
+  - type: web
+    name: megaloja-api
+    runtime: python
+    plan: free
+    buildCommand: pip install ./backend
+    startCommand: uvicorn api:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.9"
