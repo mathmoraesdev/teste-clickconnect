@@ -1,197 +1,225 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MegaLoja Online - Click & Collect</title>
-<style>
-:root{--bg:#f5f6f8;--card:#fff;--ink:#1c2230;--mut:#667085;--pri:#0b5fff;--ok:#12805c;--bad:#c4321c;--line:#e3e6ec}
-*{box-sizing:border-box}body{margin:0;font:15px/1.45 system-ui,sans-serif;background:var(--bg);color:var(--ink)}
-header{background:var(--ink);color:#fff;padding:14px 20px;display:flex;gap:20px;align-items:center;flex-wrap:wrap}
-header h1{font-size:18px;margin:0}nav button{background:none;border:0;color:#cbd2e0;font:inherit;padding:6px 10px;cursor:pointer;border-radius:6px}
-nav button.on{background:#2b3446;color:#fff}
-main{max-width:980px;margin:0 auto;padding:20px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px}
-.card h3{margin:0 0 4px;font-size:15px}.mut{color:var(--mut);font-size:13px}.price{font-weight:700;margin:6px 0}
-button.p{background:var(--pri);color:#fff;border:0;border-radius:8px;padding:8px 12px;font:inherit;cursor:pointer}
-button.s{background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 10px;font:inherit;cursor:pointer}
-button:disabled{opacity:.5;cursor:not-allowed}
-input,select{font:inherit;padding:8px;border:1px solid var(--line);border-radius:8px;width:100%}
-label{display:block;font-size:13px;color:var(--mut);margin:8px 0 3px}
-.row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1;min-width:150px}
-.badge{display:inline-block;padding:2px 8px;border-radius:99px;font-size:12px;background:#eef1f7}
-.b-ready{background:#d9f3e8;color:var(--ok)}.b-cancelled{background:#fde5e1;color:var(--bad)}
-.err{background:#fde5e1;color:var(--bad);padding:10px;border-radius:8px;margin:10px 0}
-.okmsg{background:#d9f3e8;color:var(--ok);padding:10px;border-radius:8px;margin:10px 0}
-.code{font:700 28px ui-monospace,monospace;letter-spacing:4px;background:#f0f4ff;padding:10px 16px;border-radius:8px;display:inline-block}
-.hide{display:none}h2{margin:22px 0 10px;font-size:17px}
-table{width:100%;border-collapse:collapse}td,th{padding:6px 4px;text-align:left;border-bottom:1px solid var(--line);font-size:14px}
-.opt{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px;border:1px solid var(--line);border-radius:8px;margin:6px 0;cursor:pointer}
-.opt.dis{opacity:.5;cursor:not-allowed}.opt.sel{border-color:var(--pri);background:#f0f4ff}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#172554">
+  <title>MegaLoja Online - Click & Collect</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header>
-  <h1>MegaLoja Online - Retire na loja</h1>
-  <nav>
-    <button data-t="shop" class="on">Comprar</button>
-    <button data-t="orders">Meus pedidos</button>
-    <button data-t="store">Painel da loja</button>
-  </nav>
-</header>
-<main>
-<div id="msg"></div>
+<div class="app-shell">
+  <header class="topbar">
+    <a class="brand" href="#" data-t="home" aria-label="MegaLoja - início">
+      <span class="brand-mark">ML</span>
+      <span class="brand-name"><strong>MegaLoja</strong><small>CLICK & COLLECT</small></span>
+    </a>
+    <nav class="main-nav" aria-label="Navegação principal">
+      <button type="button" data-t="home" class="on">Início</button>
+      <button type="button" data-t="shop">Cliente</button>
+      <button type="button" data-t="store">Funcionário</button>
+    </nav>
+  </header>
 
-<section id="shop">
-  <h2>Catálogo</h2>
-  <div id="products" class="grid"></div>
+  <main>
+    <div id="msg" role="status" aria-live="polite"></div>
 
-  <h2>Carrinho</h2>
-  <div class="card" id="cart"></div>
-
-  <div id="checkout" class="hide">
-    <h2>Retirada na loja</h2>
-    <div class="card" id="options"></div>
-    <h2>Seus dados e pagamento</h2>
-    <div class="card">
-      <div class="row">
-        <div><label>Nome</label><input id="c_name"></div>
-        <div><label>E-mail</label><input id="c_email" type="email"></div>
-        <div><label>Telefone</label><input id="c_phone"></div>
+    <section id="home" class="screen">
+      <div class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> NOVO SERVIÇO</p>
+          <h1>Compre online,<br><em>retire na loja.</em></h1>
+          <p class="hero-description">Sem esperar entrega. Escolha uma loja com estoque e retire seu pedido em poucas horas.</p>
+          <div class="hero-actions">
+            <button type="button" class="button button-primary" data-t="shop">Experimentar agora <span aria-hidden="true">→</span></button>
+            <span class="free-pickup"><span aria-hidden="true">✓</span> Retirada gratuita</span>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hero-glow"></div>
+          <div class="hero-store">
+            <span class="hero-store-sign">ML</span>
+            <span class="hero-store-window"></span>
+            <span class="hero-package">📦</span>
+          </div>
+          <div class="hero-sticker"><span>✓</span><strong>Pedido<br>pronto!</strong></div>
+          <div class="hero-caption">Mais praticidade, perto de você.</div>
+        </div>
       </div>
-      <div class="row">
-        <div><label>Forma de pagamento</label>
-          <select id="pay"><option value="pix">Pix</option><option value="card">Cartão</option></select></div>
-        <div><label>Token do cartão (teste: "recusado")</label><input id="tok" placeholder=""></div>
+
+      <section class="how-section" aria-labelledby="how-title">
+        <div class="section-intro">
+          <p class="eyebrow">SIMPLES ASSIM</p>
+          <h2 id="how-title">Como funciona</h2>
+        </div>
+        <div class="steps-grid">
+          <article class="step-card">
+            <span class="step-number">01</span>
+            <span class="step-icon" aria-hidden="true">🛍️</span>
+            <h3>Escolha o produto</h3>
+            <p>Veja quais itens estão disponíveis para Click & Collect.</p>
+          </article>
+          <article class="step-card">
+            <span class="step-number">02</span>
+            <span class="step-icon" aria-hidden="true">📍</span>
+            <h3>Selecione a loja</h3>
+            <p>A loja mais próxima com estoque é recomendada automaticamente.</p>
+          </article>
+          <article class="step-card">
+            <span class="step-number">03</span>
+            <span class="step-icon" aria-hidden="true">🔔</span>
+            <h3>Faça seu pedido</h3>
+            <p>Informe seus dados e acompanhe o andamento do pedido.</p>
+          </article>
+          <article class="step-card">
+            <span class="step-number">04</span>
+            <span class="step-icon" aria-hidden="true">🏪</span>
+            <h3>Retire sem fila</h3>
+            <p>Vá ao balcão Click & Collect quando o pedido estiver pronto.</p>
+          </article>
+        </div>
+      </section>
+
+      <aside class="notice-banner">
+        <span class="notice-icon" aria-hidden="true">🔔</span>
+        <div>
+          <h3>Notificações de status</h3>
+          <p>Acompanhe o pedido e veja quando ele estiver pronto para retirada.</p>
+        </div>
+        <button type="button" class="button button-outline" data-t="shop">Ver produtos disponíveis <span aria-hidden="true">→</span></button>
+      </aside>
+    </section>
+
+    <section id="shop" class="screen hide">
+      <div class="page-heading">
+        <div>
+          <p class="eyebrow">COMPRE E RETIRE</p>
+          <h1>Produtos disponíveis</h1>
+          <p>Consulte o estoque por loja e escolha onde retirar. Sem frete e sem valor mínimo.</p>
+        </div>
+        <button type="button" class="button button-outline" data-t="orders">Meus pedidos</button>
       </div>
-      <p><button class="p" id="buy">Finalizar compra</button></p>
-    </div>
-  </div>
-  <div id="done"></div>
-</section>
 
-<section id="orders" class="hide">
-  <h2>Meus pedidos</h2>
-  <div class="card row">
-    <div><label>Seu e-mail</label><input id="q_email" type="email"></div>
-    <div style="align-self:end"><button class="p" id="q_go">Buscar</button></div>
-  </div>
-  <div id="myorders"></div>
-</section>
+      <div class="shop-layout">
+        <div class="catalog-column">
+          <label class="search-box">
+            <span aria-hidden="true">⌕</span>
+            <span class="visually-hidden">Buscar produtos</span>
+            <input id="productSearch" type="search" placeholder="Buscar produtos..." autocomplete="off">
+          </label>
+          <div id="products" class="product-grid" aria-live="polite"></div>
+          <div id="productDetail" class="product-detail hide"></div>
+        </div>
 
-<section id="store" class="hide">
-  <h2>Painel da loja</h2>
-  <div class="card row">
-    <div><label>Loja</label><select id="st"></select></div>
-    <div><label>Código de retirada ou nº do pedido</label><input id="vcode" placeholder="ex.: A1B2C3"></div>
-    <div style="align-self:end"><button class="p" id="vgo">Validar e entregar</button></div>
-  </div>
-  <div id="storeorders"></div>
-</section>
-</main>
+        <aside class="cart-column">
+          <div class="card cart-card">
+            <div class="cart-heading">
+              <div>
+                <p class="eyebrow">SEU PEDIDO</p>
+                <h2>Carrinho</h2>
+              </div>
+              <span class="cart-count" id="cartCount">0 itens</span>
+            </div>
+            <div id="cart" class="cart-content"></div>
 
+            <div id="checkout" class="checkout-panel hide">
+              <div class="checkout-divider"></div>
+              <div class="pickup-heading">
+                <div>
+                  <p class="eyebrow">GRÁTIS · SEM VALOR MÍNIMO</p>
+                  <h3>Retirar em qual loja?</h3>
+                </div>
+                <button type="button" id="useLocation" class="text-button">Usar minha localização</button>
+              </div>
+              <p id="locationStatus" class="location-status">Escolha uma loja com todos os itens.</p>
+              <div id="options" class="store-list"></div>
+              <button type="button" id="continueCheckout" class="button button-primary button-wide">Continuar para pagamento <span aria-hidden="true">→</span></button>
+
+              <form id="checkoutDetails" class="checkout-details hide">
+                <div class="checkout-divider"></div>
+                <p class="eyebrow">QUASE LÁ</p>
+                <h3>Seus dados e pagamento</h3>
+                <label for="c_name">Nome</label>
+                <input id="c_name" name="name" autocomplete="name" minlength="2" required>
+                <label for="c_email">E-mail</label>
+                <input id="c_email" name="email" type="email" autocomplete="email" required>
+                <label for="c_phone">Telefone</label>
+                <input id="c_phone" name="phone" type="tel" autocomplete="tel" minlength="8" required>
+                <label for="pay">Forma de pagamento</label>
+                <select id="pay" name="payment">
+                  <option value="pix">Pix</option>
+                  <option value="card">Cartão</option>
+                </select>
+                <label for="tok">Token do cartão <span class="muted">(teste: recusado)</span></label>
+                <input id="tok" name="token" autocomplete="off">
+                <button type="submit" class="button button-primary button-wide" id="buy">Finalizar compra <span aria-hidden="true">→</span></button>
+              </form>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="confirmation" class="screen hide">
+      <div id="confirmationContent"></div>
+    </section>
+
+    <section id="orders" class="screen hide">
+      <div class="page-heading">
+        <div>
+          <p class="eyebrow">ACOMPANHAMENTO</p>
+          <h1>Meus pedidos</h1>
+          <p>Informe o e-mail usado na compra para consultar os pedidos.</p>
+        </div>
+        <button type="button" class="button button-outline" data-t="shop">Voltar às compras</button>
+      </div>
+      <form id="ordersForm" class="card orders-search">
+        <div class="form-field">
+          <label for="q_email">Seu e-mail</label>
+          <input id="q_email" type="email" autocomplete="email" required>
+        </div>
+        <button type="submit" class="button button-primary">Buscar pedidos</button>
+      </form>
+      <div id="myorders" class="orders-list"></div>
+    </section>
+
+    <section id="store" class="screen hide">
+      <div class="page-heading">
+        <div>
+          <p class="eyebrow">OPERAÇÃO DA LOJA</p>
+          <h1>Fila de pedidos</h1>
+          <p>Acompanhe a separação e valide o código para concluir a retirada.</p>
+        </div>
+        <div class="form-field store-picker">
+          <label for="st">Loja</label>
+          <select id="st"></select>
+        </div>
+      </div>
+      <div id="storeSummary" class="queue-summary"></div>
+      <div class="staff-layout">
+        <div id="storeorders" class="orders-list"></div>
+        <aside class="card validate-card">
+          <span class="validate-icon" aria-hidden="true">✓</span>
+          <p class="eyebrow">BALCÃO CLICK & COLLECT</p>
+          <h2>Validar retirada</h2>
+          <p>Digite o código de retirada ou o número do pedido para confirmar a entrega.</p>
+          <form id="validateForm">
+            <label for="vcode">Código de retirada ou nº do pedido</label>
+            <input id="vcode" placeholder="Ex.: A1B2C3" autocomplete="off" required>
+            <button type="submit" class="button button-primary button-wide" id="vgo">Validar e entregar</button>
+          </form>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span class="brand-mark brand-mark-small">ML</span>
+    <span>MegaLoja <span class="footer-muted">· Click & Collect</span></span>
+    <span class="footer-muted">Retirada gratuita na loja</span>
+  </footer>
+</div>
 <script src="config.js"></script>
-<script>
-const $=s=>document.querySelector(s), money=v=>Number(v).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
-const LABEL={pending:'Aguardando pagamento',confirmed:'Aguardando separação',preparing:'Em separação',ready:'Pronto para retirada',completed:'Retirado',cancelled:'Cancelado'};
-let products=[], cart={}, selStore=null, timer=null;
-
-const API=(new URLSearchParams(location.search).get('api')||window.API_BASE||'').replace(/\/$/,'');
-async function api(path,opt={}){
-  let r;try{r=await fetch(API+'/api/v1'+path,{headers:{'Content-Type':'application/json'},...opt,body:opt.body?JSON.stringify(opt.body):undefined})}catch(e){throw new Error('Não consegui falar com a API ('+(API||'mesma origem')+'). Ela está no ar? Confira docs/config.js.')}
-  const d=await r.json().catch(()=>({}));
-  if(!r.ok) throw new Error(typeof d.detail==='string'?d.detail:'Erro '+r.status+' (verifique os dados)');
-  return d;
-}
-function flash(t,ok){$('#msg').innerHTML=t?`<div class="${ok?'okmsg':'err'}">${t}</div>`:'';}
-
-document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
-  document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('on',x===b));
-  ['shop','orders','store'].forEach(id=>$('#'+id).classList.toggle('hide',id!==b.dataset.t));
-  flash(''); if(b.dataset.t==='store') loadStoreOrders();
-});
-
-// ---- Catálogo / carrinho (UC001) ----
-async function loadProducts(){
-  products=await api('/products');
-  const av=await Promise.all(products.map(p=>api(`/products/${p.id}/availability`)));
-  $('#products').innerHTML=products.map((p,i)=>`<div class="card"><h3>${p.name}</h3><div class="mut">${p.description}</div>
-    <div class="price">${money(p.price)}</div>
-    <div class="mut">${av[i].map(a=>`${a.store.name.replace('MegaLoja ','')}: ${a.quantity}`).join(', ')}</div>
-    <p><button class="p" onclick="add('${p.id}')">Adicionar</button></p></div>`).join('');
-}
-function add(id){cart[id]=(cart[id]||0)+1;renderCart();}
-function rm(id){delete cart[id];renderCart();}
-async function renderCart(){
-  const ids=Object.keys(cart);
-  if(!ids.length){$('#cart').innerHTML='<span class="mut">Carrinho vazio.</span>';$('#checkout').classList.add('hide');return;}
-  let total=0;
-  $('#cart').innerHTML='<table>'+ids.map(id=>{const p=products.find(x=>x.id===id);total+=p.price*cart[id];
-    return `<tr><td>${p.name}</td><td><input type="number" min="1" max="50" value="${cart[id]}" style="width:70px" onchange="cart['${id}']=Math.max(1,+this.value);renderCart()"></td>
-    <td>${money(p.price*cart[id])}</td><td><button class="s" onclick="rm('${id}')">remover</button></td></tr>`}).join('')+
-    `</table><p><b>Total: ${money(total)}</b></p>`;
-  $('#checkout').classList.remove('hide');
-  loadOptions();
-}
-// ---- Escolher retirada (UC002) ----
-async function loadOptions(){
-  const items=Object.entries(cart).map(([product_id,quantity])=>({product_id,quantity}));
-  const opts=await api('/pickup/options',{method:'POST',body:{items}});
-  if(!opts.some(o=>o.store.id===selStore&&o.can_fulfill)) selStore=(opts.find(o=>o.recommended)||{store:{}}).store.id||null;
-  $('#options').innerHTML=opts.map(o=>`<div class="opt ${o.can_fulfill?'':'dis'} ${o.store.id===selStore?'sel':''}" ${o.can_fulfill?`onclick="selStore='${o.store.id}';loadOptions()"`:''}>
-    <div><b>${o.store.name}</b> ${o.recommended?'<span class="badge b-ready">recomendada</span>':''}<div class="mut">${o.store.address}</div></div>
-    <div class="mut">${o.can_fulfill?'Tem todos os itens':'Indisponível: '+o.missing.map(m=>products.find(p=>p.id===m).name).join(', ')}</div></div>`).join('');
-}
-$('#buy').onclick=async()=>{
-  flash('');
-  if(!selStore) return flash('Escolha uma loja com todos os itens disponíveis.');
-  try{
-    const o=await api('/orders',{method:'POST',body:{
-      customer:{name:$('#c_name').value,email:$('#c_email').value,phone:$('#c_phone').value},
-      store_id:selStore,items:Object.entries(cart).map(([product_id,quantity])=>({product_id,quantity})),
-      payment:{method:$('#pay').value,token:$('#tok').value||null}}});
-    cart={};renderCart();loadProducts();
-    $('#done').innerHTML=`<h2>Compra confirmada</h2><div class="card"><p>Pedido <b>${o.id}</b>, ${money(o.total)}. Retirada em <b>${o.store.name}</b></p>
-      <p>Código de retirada:</p><div class="code">${o.pickup_code}</div><p class="mut">Leve esse código à loja quando o pedido estiver pronto.</p></div>`;
-    $('#q_email').value=o.customer_email;
-    window.scrollTo(0,document.body.scrollHeight);
-  }catch(e){flash(e.message)}
-};
-
-// ---- Acompanhar (UC003 / UC004) ----
-function orderCard(o,actions=''){return `<div class="card" style="margin:10px 0"><div class="row" style="justify-content:space-between">
-  <div><b>${o.id}</b> <span class="badge b-${o.status}">${LABEL[o.status]}</span><div class="mut">${o.store.name} - ${o.customer_name}</div></div>
-  <div style="text-align:right">${money(o.total)}<div class="mut">código <b>${o.pickup_code}</b></div></div></div>
-  <div class="mut">${o.items.map(i=>`${i.quantity}x ${i.product_name}`).join(', ')}</div>${actions?`<p>${actions}</p>`:''}</div>`}
-async function loadMyOrders(){
-  const email=$('#q_email').value; if(!email) return;
-  try{const os=await api('/orders?email='+encodeURIComponent(email));
-    $('#myorders').innerHTML=os.length?os.reverse().map(o=>orderCard(o,['confirmed','preparing','ready'].includes(o.status)?`<button class="s" onclick="cancelOrder('${o.id}')">Cancelar</button>`:'')).join(''):'<p class="mut">Nenhum pedido.</p>';
-  }catch(e){flash(e.message)}
-}
-async function cancelOrder(id){try{await api(`/orders/${id}/cancel`,{method:'POST'});loadMyOrders();loadProducts()}catch(e){flash(e.message)}}
-$('#q_go').onclick=loadMyOrders;
-
-// ---- Loja (UC005–UC008) ----
-async function loadStores(){const s=await api('/stores');$('#st').innerHTML=s.map(x=>`<option value="${x.id}">${x.name}</option>`).join('');$('#st').onchange=loadStoreOrders;}
-async function loadStoreOrders(){
-  const os=await api(`/stores/${$('#st').value}/orders`);
-  const act=o=>({confirmed:`<button class="p" onclick="step('${o.id}','start-preparing')">Iniciar separação</button>`,
-    preparing:`<button class="p" onclick="step('${o.id}','ready')">Marcar como pronto</button>`}[o.status]||'');
-  const open=os.filter(o=>['confirmed','preparing','ready'].includes(o.status)), closed=os.length-open.length;
-  $('#storeorders').innerHTML=`<p class="mut">${open.length} em andamento, ${closed} encerrados</p>`+
-    (open.map(o=>orderCard(o,act(o))).join('')||'<p class="mut">Nenhum pedido em andamento.</p>');
-}
-async function step(id,a){try{await api(`/orders/${id}/${a}`,{method:'POST'});loadStoreOrders()}catch(e){flash(e.message)}}
-$('#vgo').onclick=async()=>{
-  flash('');try{const o=await api(`/stores/${$('#st').value}/pickup/validate`,{method:'POST',body:{code:$('#vcode').value}});
-    flash(`Pedido ${o.id} entregue a ${o.customer_name}.`,true);$('#vcode').value='';loadStoreOrders();loadProducts();
-  }catch(e){flash(e.message)}
-};
-
-loadProducts().then(renderCart);loadStores();
-setInterval(()=>{if(!$('#orders').classList.contains('hide'))loadMyOrders();if(!$('#store').classList.contains('hide'))loadStoreOrders();},5000);
-</script>
+<script src="app.js"></script>
 </body>
 </html>
